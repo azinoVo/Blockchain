@@ -1,7 +1,8 @@
 import hashlib
 import requests
-import json
 import sys
+import json
+
 
 # TODO: Implement functionality to search for a proof 
 def proof_of_work(block_string):
@@ -13,7 +14,7 @@ def proof_of_work(block_string):
         return proof
 
 def valid_proof(block_string, proof):
-        # TODO
+
         guess = f'{block_string}{proof}'.encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
         return guess_hash[:3] == "000"
@@ -28,6 +29,7 @@ if __name__ == '__main__':
     coins_mined = 0
     # Run forever until interrupted
     while True:
+        print("HELLO!")
         # TODO: Get the last proof from the server
         URL = "http://localhost:5000/last_block"
         r = requests.get(url=URL)
@@ -35,6 +37,7 @@ if __name__ == '__main__':
         # Look for new proof
         last_proof = data['last_block']
         new_proof = proof_of_work(last_proof)
+        print(new_proof)
 
         # TODO: When found, POST it to the server {"proof": new_proof}
         # TODO: We're going to have to research how to do a POST in Python
