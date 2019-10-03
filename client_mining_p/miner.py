@@ -36,7 +36,7 @@ if __name__ == '__main__':
         data = r.json()
         # Look for new proof
         last_proof = data['last_block']
-        new_proof = proof_of_work(last_proof)
+        new_proof = proof_of_work(last_proof)   
         print(new_proof)
 
         # TODO: When found, POST it to the server {"proof": new_proof}
@@ -47,9 +47,11 @@ if __name__ == '__main__':
         r2 = requests.post(url=URL_MINE, json=post_data)
         data_mine = r2.json()
         print(data_mine)
+
         # TODO: If the server responds with 'New Block Forged'
         if data_mine['message'] == 'New Block Forged':
             coins_mined += 1
         print(data_mine['message'])
         # add 1 to the number of coins mined and print it.  Otherwise,
         # print the message from the server.
+    pass
