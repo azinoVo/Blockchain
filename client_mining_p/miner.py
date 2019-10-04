@@ -51,6 +51,7 @@ if __name__ == '__main__':
         # TODO: If the server responds with 'New Block Forged'
         if data_mine['message'] == 'New Block Forged':
             coins_mined += 1
+            print(f"Total Coins: {coins_mined}")
         print(data_mine['message'])
         # add 1 to the number of coins mined and print it.  Otherwise,
         # print the message from the server.

@@ -200,15 +200,14 @@ blockchain = Blockchain()
 def mine():
     # We run the proof of work algorithm to get the next proof...
     # proof = blockchain.proof_of_work(blockchain.last_block)
+    # We have access to this on the server
 
-    last_block = blockchain.last_block # We have access to this on the server
+    last_block = blockchain.last_block 
     last_block_string = json.dumps(last_block, sort_keys=True).encode()
 
     values = request.get_json()
     submitted_proof = values['proof']
 
-    # valid_proof takes in a block string and a proof and see whether it
-    # has the 0's at the beginning - true or false if it meets requirement
     if not blockchain.valid_proof(last_block_string, submitted_proof):
         response = {
             'message': "Proof was invalid or too late"
